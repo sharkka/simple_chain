@@ -22,17 +22,29 @@ typedef struct _deal_proof {
 
 class simple_trade {
 public:
-    int trade(StlString username, StlString password, float tradeSum);
-    int update();
-    int commit();
-    int rollback();
-    int pullBlock();
-    int pushBlock();
+    simple_trade();
+    ~simple_trade();
+    int        trade(StlString username, StlString password, float tradeSum);
+    int        commit();
+    int        rollback();
+    int        pullBlock();
+    int        pushBlock();
+    int        query();
+    int        log();
 private:
     deal_proof proof_;
 };
 
-
+class filedb {
+public:
+    filedb();
+    ~filedb();
+    int        insert(deal_proof dp);
+    int        query();
+    int64_t    count();
+private:
+    deal_proof dp_;
+};
 
 
 
