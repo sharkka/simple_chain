@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 
-
 using StlString = std::string;
 /**
  * @Brief    proof
@@ -21,11 +20,14 @@ typedef struct _deal_proof {
     StlString   hashPrevProof;
     StlString   hashCurrProof;
     StlString   hashNextProof;
+    int32_t     id;
     int32_t     blockId;
     int32_t     token;
     uint32_t    tradeTime;
     StlString   username;
     StlString   password;
+    StlString   tradeLog;
+    int32_t     tradeDatetime;
 } deal_proof;
 /**
  * @Brief    trade process
@@ -61,26 +63,16 @@ class filedb {
 public:
     filedb();
     ~filedb();
-    int        insert(deal_proof dp);
-    int        query();
+    int32_t    insert(deal_proof dp);
+    int32_t    query();
+    int32_t    queryBlock
     int64_t    count();
+    int32_t    blockCount();
 private:
     deal_proof dp_;
     int        dbId_;
     int        partitionId_;
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
