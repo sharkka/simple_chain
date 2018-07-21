@@ -22,6 +22,8 @@ typedef struct _deal_proof {
     StlString   hashNextProof;
     int32_t     id;
     int32_t     blockId;
+    int32_t     dbId;
+    int32_t     partitionId;
     int32_t     token;
     uint32_t    tradeTime;
     StlString   username;
@@ -51,6 +53,24 @@ public:
 private:
     deal_proof proof_;
 };
+
+class simple_trade_service {
+public:
+    simple_trade_service();
+    ~simple_trade_service();
+
+private:
+
+};
+
+class simple_trade_node {
+public:
+    simple_trade_node();
+    ~simple_trade_node();
+
+private:
+    
+};
 /**
  * @Brief    chain database, simplest as local file
  * @Method   filedb
@@ -63,22 +83,14 @@ class filedb {
 public:
     filedb();
     ~filedb();
-    int32_t    insert(deal_proof dp);
+    int32_t    insert(deal_proof* dp);
     int32_t    query();
-    int32_t    queryBlock
+    int32_t    queryBlock();
     int64_t    count();
     int32_t    blockCount();
 private:
     deal_proof dp_;
-    int        dbId_;
-    int        partitionId_;
+    
 };
 
-
-
-
-
-
 #endif
-
-

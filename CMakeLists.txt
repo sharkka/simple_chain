@@ -41,12 +41,19 @@ else()
         message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use higher version C++ compiler.")
     endif()
 
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--default-symver -Wl,--no-undefined,-z,relro,-z,now,-z,noexecstack -fstack-protector")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--default-symver -Wno-unused-function -Wl,--no-undefined,-z,relro,-z,now,-z,noexecstack -fstack-protector")
 endif()
 
-aux_source_directory(src                        DIR_SRCS)
-
-add_executable(simple_chain ${DIR_SRCS})
-target_link_libraries(simple_chain
+include_directories(${PROJECT_SOURCE_DIR}/third_party/libevent/include)
+include_directories(${PROJECT_SOURCE_DIR}/third_party/json-cpp/include)
+link_directories(${PROJECT_SOURCE_DIR}/third_party/libevent/lib/linux/x64)
+aux_source_directory(${PROJECT_SOURCE_DIR}/src DIR_SRCS)
+aux_source_directory(${PROJECT_SOURCE_DIR}/third_party/json-cpp/src/lib_json DIR_SRCS)
+add_executable(chaintest ${DIR_SRCS})
+target_link_libraries(chaintest
     pthread
-    rt)
+    rt
+    event
+    event_core 
+    event_extra 
+    )
