@@ -46,13 +46,17 @@ endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/third_party/libevent/include)
 include_directories(${PROJECT_SOURCE_DIR}/third_party/json-cpp/include)
+include_directories(${PROJECT_SOURCE_DIR}/third_party/openssl/include)
+
 link_directories(${PROJECT_SOURCE_DIR}/third_party/libevent/lib/linux/x64)
+link_directories(${PROJECT_SOURCE_DIR}/third_party/openssl/lib/linux/x64)
 aux_source_directory(${PROJECT_SOURCE_DIR}/src DIR_SRCS)
 aux_source_directory(${PROJECT_SOURCE_DIR}/third_party/json-cpp/src/lib_json DIR_SRCS)
 add_executable(chaintest ${DIR_SRCS})
 target_link_libraries(chaintest
     pthread
     rt
+    crypto
     event
     event_core 
     event_extra 
