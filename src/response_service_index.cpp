@@ -13,6 +13,14 @@
 #include <memory.h>
 
 #include <string>
+
+void append_item(std::string& s, const char* uriPrefix, const char* uriSuffix) {
+    s.append("===>> <a href=http://");
+    s.append(uriPrefix);
+    s.append(uriSuffix);
+    s.append("<br></a>");
+}
+
 /**
  * @Method   response_index
  * @Brief
@@ -31,23 +39,14 @@ void response_index(http_server* hs, EvHttpRequest* req, const char* url) {
     sprintf(uriPrefix, "%s:%d", hostip.c_str(), port);
     std::string s;
     s.append("<head><h2><b>Welcome to Simple Chain<b></h1></head><br>");
-    s.append("<hr style=\"border:3 solid ##ff0033\" width=\"100%\" SIZE=3>");
+    s.append("<hr style='border:3 solid ##ff0033' width='100%'' SIZE=3>");
     s.append("<body>");
     s.append("<h3>");
-    s.append("===>> <a href=http://");
-    s.append(uriPrefix);
-    s.append("/help>Help</a>");
-    s.append("<br>");
 
-    s.append("===>> <a href=http://");
-    s.append(uriPrefix);
-    s.append("/version>Version</a>");
-    s.append("<br>");
-    
-    s.append("===>> <a href=http://");
-    s.append(uriPrefix);
-    s.append("/init>Initialized Block</a>");
-    s.append("<br>");
+    append_item(s, uriPrefix, "/help>Help");
+    append_item(s, uriPrefix, "/version>Version");
+    append_item(s, uriPrefix, "/init>Initialized Block");
+    append_item(s, uriPrefix, "/haveatry>Have a Try");
 
 
     s.append("</h3></body>");

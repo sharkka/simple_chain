@@ -25,11 +25,11 @@
  */
 void response_help(http_server* hs, EvHttpRequest* req, const char* url) {
     std::string s;
-    s.append("<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>");
+    s.append("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>");
     s.append("<h2><b>Welcome to Simple Chain Help Page<b></h1></head><br>");
-    s.append("<hr style=\"border:1 solid ##ff0033\" width=\"100%\" SIZE=3>");
+    s.append("<hr style='border:1 solid ##ff0033' width='100%' SIZE=3>");
     s.append("<body>");
-    s.append("<h3><font face=\"Courier New\">");
+    s.append("<h3><font face='Courier New'>");
     s.append("         God, give us grace to accept with serenity<br>");
     s.append("         the things that cannot be changed,<br>");
     s.append("         courage to change the things<br>");

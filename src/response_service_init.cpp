@@ -21,7 +21,7 @@
  * @Modyfiy  2018-04-17T14:35:36+0800
  */
 void response_init(http_server* hs, EvHttpRequest* req, const char* url) {
-    std::string s = "<html><font size=2 face=\"Courier New\" italic bold>";
+    std::string s = "<html><font size=2 face='Courier New' italic bold>";
     Json::Value jsonObject;
     std::string name = "Initialization Block";
     jsonObject["Name"]         = name;
