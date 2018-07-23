@@ -27,7 +27,7 @@ void response_init(http_server* hs, EvHttpRequest* req, const char* url) {
     jsonObject["Name"]         = name;
     jsonObject["ID"]           = "0000-0000-0000-0000-0001";
     jsonObject["Index"]        = "1";
-    jsonObject["Datetime"]     = currentTime();
+    jsonObject["Datetime"]     = time_utils::currentTime();
     
     simple_encrypt se(name.c_str());
     std::string chash = se.sha256();
@@ -38,7 +38,7 @@ void response_init(http_server* hs, EvHttpRequest* req, const char* url) {
     jsonObject["Name"]         = "Sequence Block";
     jsonObject["ID"]           = "0000-0000-0000-0000-0002";
     jsonObject["Index"]        = "2";
-    jsonObject["Datetime"]     = currentTime();
+    jsonObject["Datetime"]     = time_utils::currentTime();
     se.reset(chash);
     chash = se.sha256();
     jsonObject["hash"]         = chash;

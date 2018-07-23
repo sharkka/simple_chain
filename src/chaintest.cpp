@@ -18,15 +18,15 @@
 static void http_server_test() {
     const char* url_01 = "/version";
     const char* url_02 = "/init";
-    const char* url_03 = "/id";
-    const char* url_04 = "/status";
-    const char* url_05 = "/speed";
-    const char* url_06 = "/error";
+    //const char* url_03 = "/id";
+    //const char* url_04 = "/status";
+    //const char* url_05 = "/speed";
+    //const char* url_06 = "/error";
 
     simple_chain_service scs;
     scs.addService(url_01, response_version);
-    scs.addService(url_02, reponse_init);
-    hs.start();
+    scs.addService(url_02, response_init);
+    scs.start();
 }
 
 int main() {

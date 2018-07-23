@@ -9,6 +9,7 @@
 #define __TIME_UTILS_H_
 
 #include <stdlib.h>
+#include <string>
 /**
  * @Class    time_utils
  * @Brief    
@@ -25,6 +26,6 @@ public:
         strftime(s, sizeof(s), "%Y-%m-%d %H:%M:%S", localtime(&tt));
         return s;
     }
-}
+};
 
 #endif

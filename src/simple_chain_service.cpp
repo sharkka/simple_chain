@@ -55,4 +55,5 @@ void simple_chain_service::addService(const char* url, ResponseCallback servCall
  */
 int simple_chain_service::start() {
     httpServer_.start();
+    return 0;
 }
