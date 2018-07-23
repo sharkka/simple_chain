@@ -50,6 +50,10 @@
 http_server::http_server() {
     // default
     port_ = 8080;
+    std::string ip = localAddress();
+    if (ip.empty()) {
+        printf("WARNING: get local ip address failed.\n");
+    }
 }
 /**
  * @Brief    constructor with listening port
@@ -454,4 +458,50 @@ const char* http_server::commandType(EvHttpRequest* req) const {
         return "unknown";
     }
     return "GET";
+}
+
+std::string  http_server::localAddress() {
+    char ip[20] = {'\0'};
+#if defined(_WIN32) || defined(_WIN64)
+    char szHost[256];
+    ::gethostname(szHost, 256);
+    hostent* hostname = ::gethostbyname(szHost);
+    in_addr addr;
+    for (int i = 0; ; i++) {
+        char* p = hostname->h_addr_list[i];
+        if (p == NULL)
+            break;
+        memcpy(&addr.S_un.S_addr, p, hostname->h_length);
+        char* ip = ::inet_ntoa(addr);
+        printf("Local IP£º %s \n", ip);
+        memcpy(localaddr_, ip, strlen(ip)+1);
+        return std::string(ip);
+    }
+#else
+    memset(ip, 0, sizeof(ip));
+    const char* shellstr = "ifconfig | sed -n '2p' | awk -F'[ :]+' '{printf $4}'";  
+    FILE* fp = popen(shellstr, "r");
+    size_t bytes = fread(ip, sizeof(char), sizeof(ip), fp);
+    if (bytes > 0) {
+        ip[bytes] = '\0';
+    }
+    if (bytes < 8) {
+        printf("IP address invalid.\n");
+        pclose(fp);
+        return "";
+    }
+    if (strlen(ip) > 0) {
+        strcpy(localaddr_, ip);
+    }
+    pclose(fp);
+#endif
+    return std::string(ip);
+}
+
+std::string http_server::hostip() const {
+    return localaddr_;
+}
+
+int http_server::port() const {
+    return port_;
 }

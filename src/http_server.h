@@ -57,6 +57,8 @@ public:
     ~http_server();
 
     int              listenPort(int port);
+    std::string      hostip() const;
+    int              port() const;
     int              push(const char* url, ResponseCallback servCallback);
     int              pushUri(const char* url);
     int              popUri(const char* url);
@@ -74,11 +76,13 @@ public:
 
 private:
     const char*      commandType(EvHttpRequest* req) const;
+    std::string      localAddress();
 
     EvBase*          base_;
     EvHttpHandle*    http_;
     EvHttpBoundSock* boundfd_;
     int              port_;
+    char             localaddr_[20];
     StlStringList    urlList_;
     char             uriRoot_[512];
     static void      responseSender(struct evhttp_request *req, void *arg);

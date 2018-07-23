@@ -12,6 +12,7 @@
 
 extern void response_version(http_server* hs, EvHttpRequest* req, const char* url);
 extern void response_init(http_server* hs, EvHttpRequest* req, const char* url);
+extern void response_index(http_server* hs, EvHttpRequest* req, const char* url);
 
 
 #endif
