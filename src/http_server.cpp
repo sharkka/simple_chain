@@ -261,8 +261,8 @@ void http_server::responseSender(struct evhttp_request* req, void *arg) {
         return;
     }
     ResponseCallback     respCb;
-    auto cbp = hs->respCallbacks_.find(uri);
-    if (cbp != hs->respCallbacks_.end()) {
+    auto cbp = hs->respCallbacks.find(uri);
+    if (cbp != hs->respCallbacks.end()) {
         respCb = cbp->second.respCb;
     } else {
         printf("uri %s not found\n", uri);
@@ -285,7 +285,7 @@ int http_server::registerResponseCallback(const char* url, ResponseCallback serv
     RespCallbackBroker rcp;
     rcp.respCb = servCallback;
     rcp.sendRespCb = responseSender;
-    respCallbacks_.insert(std::pair<std::string, RespCallbackBroker>(url, rcp));
+    respCallbacks.insert(std::pair<std::string, RespCallbackBroker>(url, rcp));
     return 0;
 }
 /**
@@ -319,8 +319,8 @@ int http_server::start() {
     ResponseCallback     respCb;
     XSTD_UNUSED(respCb);
     for (StlStringListIter pos = urlList_.begin(); pos != urlList_.end(); ++pos) {
-        auto cbp = respCallbacks_.find(*pos);
-        if (cbp != respCallbacks_.end()) {
+        auto cbp = respCallbacks.find(*pos);
+        if (cbp != respCallbacks.end()) {
             sendRespCb = cbp->second.sendRespCb;
             respCb     = cbp->second.respCb;
         } else {

@@ -11,10 +11,12 @@
 
 simple_chain_service::simple_chain_service() {
     port_ = 9090;
+    index_ = 1;
 }
 
 simple_chain_service::simple_chain_service(int port) {
     listenPort(port);
+    index_ = 1;
 }
 
 simple_chain_service::~simple_chain_service() {
@@ -44,6 +46,7 @@ void simple_chain_service::listenPort(int port) {
  */
 void simple_chain_service::addService(const char* url, ResponseCallback servCallback) {
     httpServer_.push(url, servCallback);
+    httpServer_.userHandle = this;
 }
 /**
  * @Method   start
@@ -57,3 +60,30 @@ int simple_chain_service::start() {
     httpServer_.start();
     return 0;
 }
+
+int simple_chain_service::addTradeItem(std::string item) {
+    tradeList_.push_back(item);
+    return 0;
+}
+
+std::vector<std::string>& simple_chain_service::tradeList() {
+    //StlStringList* p = &tradeList_;
+    return tradeList_;
+}
+
+StlString simple_chain_service::newestTradeItem() const {
+    if (tradeList_.empty())
+        return "";
+    auto pos = tradeList_.back();
+    return pos;
+}
+
+void simple_chain_service::incIndex() {
+    index_ ++;
+}
+
+uint64_t simple_chain_service::index() const {
+    return index_;
+}
+
+

@@ -8,7 +8,7 @@
 
 #include "json/json.h"
 #include "simple_encrypt.h"
-//#include "time_utils.h"
+
 #include "http_server.h"
 #include <memory.h>
 
@@ -39,7 +39,7 @@ void response_index(http_server* hs, EvHttpRequest* req, const char* url) {
     sprintf(uriPrefix, "%s:%d", hostip.c_str(), port);
     std::string s;
     s.append("<head><h2><b>Welcome to Simple Chain<b></h1></head><br>");
-    s.append("<hr style='border:3 solid ##ff0033' width='100%'' SIZE=3>");
+    s.append("<hr style='border:3 solid ##ff0033' width='100%' SIZE=3>");
     s.append("<body>");
     s.append("<h3>");
 
@@ -47,6 +47,7 @@ void response_index(http_server* hs, EvHttpRequest* req, const char* url) {
     append_item(s, uriPrefix, "/version>Version");
     append_item(s, uriPrefix, "/init>Initialized Block");
     append_item(s, uriPrefix, "/haveatry>Have a Try");
+    append_item(s, uriPrefix, "/chaining>Try to commit a chain block");
 
 
     s.append("</h3></body>");

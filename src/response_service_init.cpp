@@ -8,8 +8,10 @@
 
 #include "json/json.h"
 #include "simple_encrypt.h"
-#include "time_utils.h"
 #include "http_server.h"
+#include "time_utils.h"
+#include "common_utils.h"
+
 /**
  * @Method
  * @Brief
@@ -22,6 +24,7 @@
  */
 void response_init(http_server* hs, EvHttpRequest* req, const char* url) {
     std::string s = "<html><font size=2 face='Courier New' italic bold>";
+    common_utils::toHomePage(hs, s);
     Json::Value jsonObject;
     std::string name = "Initialization Block";
     jsonObject["Name"]         = name;
@@ -31,7 +34,7 @@ void response_init(http_server* hs, EvHttpRequest* req, const char* url) {
     
     simple_encrypt se(name.c_str());
     std::string chash = se.sha256();
-    jsonObject["hash"]         = chash;
+    jsonObject["Hash"]         = chash;
     Json::StyledWriter sw;
     std::string s1 = sw.write(jsonObject);
     s1.append("<br>");

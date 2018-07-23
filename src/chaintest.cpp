@@ -21,7 +21,8 @@ static void http_server_test() {
     const char* url_03 = "/index";
     const char* url_04 = "/help";
     const char* url_05 = "/haveatry";
-    //const char* url_06 = "/error";
+    const char* url_06 = "/chaining";
+    //const char* url_077 = "/error";
 
     simple_chain_service scs(9090);
     scs.addService(url_01, response_version);
@@ -29,6 +30,7 @@ static void http_server_test() {
     scs.addService(url_03, response_index);
     scs.addService(url_04, response_help);
     scs.addService(url_05, response_haveatry);
+    scs.addService(url_06, response_chaining);
     scs.start();
 }
 

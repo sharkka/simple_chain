@@ -72,7 +72,8 @@ public:
     void             cleanup();
     int              reply(const EvHttpRequest* req, int code, const char* reason, const char* content);
 
-    RespHandlers     respCallbacks_;
+    RespHandlers     respCallbacks;
+    void*            userHandle;
 
 private:
     const char*      commandType(EvHttpRequest* req) const;

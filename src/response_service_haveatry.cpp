@@ -8,11 +8,12 @@
 
 #include "json/json.h"
 #include "simple_encrypt.h"
-//#include "time_utils.h"
 #include "http_server.h"
-#include <memory.h>
+#include "common_utils.h"
 
+#include <memory.h>
 #include <string>
+
 /**
  * @Method   response_haveatry
  * @Brief
@@ -27,6 +28,7 @@ void response_haveatry(http_server* hs, EvHttpRequest* req, const char* url) {
     std::string s;
     s.append("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>");
     s.append("<h2><b>Welcome to Simple Chain Help Page<b></h1></head><br>");
+    common_utils::toHomePage(hs, s);
     s.append("<hr style='border:1 solid ##ff0033' width='100%' SIZE=3>");
     s.append("<body>");
     s.append("<h3><font face='Courier New'>");
