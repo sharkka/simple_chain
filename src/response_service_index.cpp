@@ -30,17 +30,25 @@ void response_index(http_server* hs, EvHttpRequest* req, const char* url) {
     memset(uriPrefix, 0, sizeof(uriPrefix));
     sprintf(uriPrefix, "%s:%d", hostip.c_str(), port);
     std::string s;
-    s.append("<head><h2><b>Welcome to simple chain<b></h1></head><br>");
+    s.append("<head><h2><b>Welcome to Simple Chain<b></h1></head><br>");
+    s.append("<hr style=\"border:3 solid ##ff0033\" width=\"100%\" SIZE=3>");
     s.append("<body>");
     s.append("<h3>");
     s.append("===>> <a href=http://");
     s.append(uriPrefix);
-    s.append("/version>version</a>");
+    s.append("/help>Help</a>");
     s.append("<br>");
+
     s.append("===>> <a href=http://");
     s.append(uriPrefix);
-    s.append("/init>initialized block</a>");
+    s.append("/version>Version</a>");
     s.append("<br>");
+    
+    s.append("===>> <a href=http://");
+    s.append(uriPrefix);
+    s.append("/init>Initialized Block</a>");
+    s.append("<br>");
+
 
     s.append("</h3></body>");
 

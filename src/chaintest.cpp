@@ -19,7 +19,7 @@ static void http_server_test() {
     const char* url_01 = "/version";
     const char* url_02 = "/init";
     const char* url_03 = "/index";
-    //const char* url_04 = "/status";
+    const char* url_04 = "/help";
     //const char* url_05 = "/speed";
     //const char* url_06 = "/error";
 
@@ -27,6 +27,7 @@ static void http_server_test() {
     scs.addService(url_01, response_version);
     scs.addService(url_02, response_init);
     scs.addService(url_03, response_index);
+    scs.addService(url_04, response_help);
     scs.start();
 }
 
