@@ -24,8 +24,8 @@
  */
 class simple_chain_service {
 public:
-    using StlString     = std::string;
-    using StlStringList = std::vector<StlString>;
+    using StlString      = std::string;
+    using StlStringArray = std::vector<StlString>;
 public:
     simple_chain_service();
     explicit simple_chain_service(int port);
@@ -43,7 +43,7 @@ public:
 private:
     http_server    httpServer_;
     int            port_;
-    StlStringList  tradeList_;
+    StlStringArray tradeList_;
     uint64_t       index_;
 };
 

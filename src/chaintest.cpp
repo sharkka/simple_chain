@@ -28,12 +28,12 @@ struct resp_pack_t {
  */
 static void http_server_test() {
     resp_pack_t resp[] = {
-        {"/version", response_version},
-        {"/init", response_init},
-        {"/index", response_index},
-        {"/help", response_help},
-        {"/haveatry", response_haveatry},
-        {"/chaining", response_chaining}
+        {"/version",     response_version},
+        {"/init",        response_init},
+        {"/index",       response_index},
+        {"/help",        response_help},
+        {"/haveatry",    response_haveatry},
+        {"/chaining",    response_chaining}
     };
 
     simple_chain_service scs(9090);
