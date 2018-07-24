@@ -31,20 +31,20 @@ public:
     explicit simple_chain_service(int port);
     ~simple_chain_service();
 
-    void           listenPort(int port);
-    void           addService(const char* url, ResponseCallback servCallback);
-    int            start();
-    int            addTradeItem(std::string item);
-    StlString      newestTradeItem() const;
-    std::vector<std::string>&  tradeList();
-    void           incIndex();
-    uint64_t       index() const;
+    void              listenPort(int port);
+    void              addService(const char* url, ResponseCallback servCallback);
+    int               start();
+    int               addTradeItem(std::string item);
+    StlString         newestTradeItem() const;
+    StlStringArray&   tradeList();
+    void              incIndex();
+    uint64_t          index() const;
 
 private:
-    http_server    httpServer_;
-    int            port_;
-    StlStringArray tradeList_;
-    uint64_t       index_;
+    http_server       httpServer_;
+    int               port_;
+    StlStringArray    tradeList_;
+    uint64_t          index_;
 };
 
 
