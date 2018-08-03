@@ -11,6 +11,8 @@
 #include <stdlib.h>
 #include <memory.h>
 #include <string>
+#include <algorithm>
+
 #include "http_server.h"
 
 /**
@@ -32,6 +34,37 @@ public:
         s.append(idxPage);
         s.append(">Home</a><br>");
     }
+    /**
+     * @Brief
+     * @Method   toUpper
+     * @DateTime 2018-06-26T15:56:23+0800
+     * @Modify   2018-06-26T15:56:23+0800
+     * @Author   Anyz
+     * @Keyword
+     * @param    s [description]
+     * @return   [description]
+     */
+    static std::string& toUpper(std::string& s) {
+        std::string& r = s;
+        std::transform(r.begin(), r.end(), r.begin(), ::toupper);
+        return r;
+    }
+    /**
+     * @Brief
+     * @Method   toLower
+     * @DateTime 2018-06-26T15:56:29+0800
+     * @Modify   2018-06-26T15:56:29+0800
+     * @Author   Anyz
+     * @Keyword
+     * @param    s [description]
+     * @return   [description]
+     */
+    static std::string& toLower(std::string& s) {
+        std::string& r = s;
+        std::transform(r.begin(), r.end(), r.begin(), ::tolower);
+        return r;
+    }
+
 };
 
 #endif

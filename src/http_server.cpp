@@ -405,7 +405,29 @@ int http_server::reply(const EvHttpRequest* req, int code, const char* reason, c
     struct evbuffer* buff;
     buff = evbuffer_new();
     evbuffer_add_printf(buff,"%s\n", content);
-    evhttp_send_reply(const_cast<EvHttpRequest*>(req), 200, "OK", buff);
+    evhttp_send_reply(const_cast<EvHttpRequest*>(req), code, reason, buff);
+    evbuffer_free(buff);
+    return 0;
+}
+/**
+ * @Brief    reply to request for binary stream
+ * @Method   send
+ * @DateTime 2018-07-20T14:32:51+0800
+ * @Modify   2018-07-20T14:32:51+0800
+ * @Author   Anyz
+ * @Keyword
+ * @param    req [description]
+ * @param    code [description]
+ * @param    reason [description]
+ * @param    buffdata [description]
+ * @param    len
+ * @return   [description]
+ */
+int http_server::send(const EvHttpRequest* req, int code, const char* reason, char* buffdata, int len) {
+    struct evbuffer* buff;
+    buff = evbuffer_new();
+    evbuffer_add(buff, buffdata, len);
+    evhttp_send_reply(const_cast<EvHttpRequest*>(req), code, reason, buff);
     evbuffer_free(buff);
     return 0;
 }

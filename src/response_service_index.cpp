@@ -48,7 +48,7 @@ void response_index(http_server* hs, EvHttpRequest* req, const char* url) {
     append_item(s, uriPrefix, "/init>Initialized Block");
     append_item(s, uriPrefix, "/haveatry>Have a Try");
     append_item(s, uriPrefix, "/chaining>Try to commit a chain block");
-
+    append_item(s, uriPrefix, "/videoinfo>post xml GA/T 1400");
 
     s.append("</h3></body>");
 

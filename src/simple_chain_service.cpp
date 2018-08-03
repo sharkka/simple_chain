@@ -8,6 +8,7 @@
 
 #include "simple_chain_service.h"
 #include "response_services.h"
+#include "common_utils.h"
 
 simple_chain_service::simple_chain_service() {
     port_ = 9090;

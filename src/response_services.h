@@ -16,7 +16,7 @@ extern void response_index   (http_server* hs, EvHttpRequest* req, const char* u
 extern void response_help    (http_server* hs, EvHttpRequest* req, const char* url);
 extern void response_haveatry(http_server* hs, EvHttpRequest* req, const char* url);
 extern void response_chaining(http_server* hs, EvHttpRequest* req, const char* url);
-
+extern void response_videoinfo(http_server* hs, EvHttpRequest* req, const char* url);
 
 #endif
 

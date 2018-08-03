@@ -71,6 +71,7 @@ public:
     int              stop();
     void             cleanup();
     int              reply(const EvHttpRequest* req, int code, const char* reason, const char* content);
+    int              send(const EvHttpRequest* req, int code, const char* reason, char* buffdata, int len);
 
     RespHandlers     respCallbacks;
     void*            userHandle;

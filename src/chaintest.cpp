@@ -30,10 +30,27 @@ static void http_server_test() {
     resp_pack_t resp[] = {
         {"/version",     response_version},
         {"/init",        response_init},
+        {"/",            response_index},
         {"/index",       response_index},
+        {"/index.htm",   response_index},
+        {"/index.html",  response_index},
         {"/help",        response_help},
         {"/haveatry",    response_haveatry},
-        {"/chaining",    response_chaining}
+        {"/chaining",    response_chaining},
+        {"/videoinfo",   response_videoinfo}
+    };
+
+    simple_chain_service scs(9090);
+    for (unsigned int i = 0; i < sizeof(resp) / sizeof(resp_pack_t); ++i) {
+        scs.addService(resp[i].url, resp[i].resp_cb);
+    }
+
+    scs.start();
+}
+
+static void http_gat1400_test() {
+    resp_pack_t resp[] = {
+        {"/videoinfo",   response_videoinfo}
     };
 
     simple_chain_service scs(9090);
@@ -45,6 +62,6 @@ static void http_server_test() {
 }
 
 int main() {
-    http_server_test();
+    http_gat1400_test();
     return 0;
 }
