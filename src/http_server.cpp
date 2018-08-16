@@ -92,7 +92,7 @@ http_server::~http_server() {
  * @return   [description]
  */
 int http_server::listenPort(int port) {
-    if (port > 1024)
+    if (port > 102)
         port_ = port;
     else {
         printf("port is not allowed range from 1~1024");
@@ -188,14 +188,21 @@ StlString http_server::requestData(EvHttpRequest* req, const char* url) {
     struct evbuffer* evbuf = evhttp_request_get_input_buffer(req);
     StlString str;
 
+    size_t bytes = evbuffer_get_length(evbuf);
     while (evbuffer_get_length(evbuf)) {
         int n;
-        char buff[1024];
-        n = evbuffer_remove(evbuf, buff, sizeof(buff));
+        char* buff = new char[bytes+1];
+        memset(buff, 0, sizeof(buff)+1);
+        buff[bytes] = '\0';
+        n = evbuffer_remove(evbuf, buff, bytes);
         if (n > 0) {
             str.append(buff);
         }
+        delete [] buff;
+        buff = NULL;
     }
+
+    printf("received size: %ld\n", bytes);
     return str;
 }
 /**
