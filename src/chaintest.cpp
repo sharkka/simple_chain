@@ -40,7 +40,7 @@ static void http_server_test() {
         {"/videoinfo",   response_videoinfo}
     };
 
-    simple_chain_service scs(9090);
+    simple_chain_service scs(554);
     for (unsigned int i = 0; i < sizeof(resp) / sizeof(resp_pack_t); ++i) {
         scs.addService(resp[i].url, resp[i].resp_cb);
     }
@@ -62,6 +62,6 @@ static void http_gat1400_test() {
 }
 
 int main() {
-    http_gat1400_test();
+    http_server_test();
     return 0;
 }
